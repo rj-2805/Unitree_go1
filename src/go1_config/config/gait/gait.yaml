@@ -1,0 +1,35 @@
+knee_orientation : ">>"
+pantograph_leg : false
+odom_scaler: 1.0
+max_linear_velocity_x : 0.5
+max_linear_velocity_y : 0.25
+max_angular_velocity_z : 1.0
+com_x_translation : 0.0
+swing_height : 0.04
+stance_depth : 0.0
+stance_duration : 0.25
+nominal_height : 0.28
+
+# # Gait configuration for Unitree Go1 in stair climbing
+# knee_orientation: ">>"  # Suitable for backward bending knees
+# pantograph_leg: true    # Enables a linear foot trajectory for precision
+
+# # Odometry
+# odom_scaler: 1.0        # Maintain accurate odometry
+
+# # Velocity limits
+# max_linear_velocity_x: 0.3  # Reduce forward speed for stability
+# max_linear_velocity_y: 0.1  # Reduce side-stepping speed
+# max_angular_velocity_z: 0.5 # Reduce angular speed for controlled turns
+
+# # Center of Mass (CoM)
+# #com_x_translation: 0.02  # Shift CoM slightly forward for better balance
+
+# # Swing parameters
+# swing_height: 0.08       # Increase swing height for step clearance
+# stance_depth: 0.01       # Slight backward motion during stance for stability
+# stance_duration: 0.35    # Longer stance phase for better support
+
+# # Body height
+# nominal_height: 0.3      # Increase body height for step clearance
+

@@ -1,0 +1,28 @@
+global_costmap:
+  global_frame: map  # changed(ejalaa): we run in odom for autonomous exploration
+  robot_base_frame: base_footprint
+
+  update_frequency: 4.0 
+  publish_frequency: 2.0 
+
+  static_map: true
+
+  rolling_window: false
+
+  cost_scaling_factor: 0.15
+  inflation_radius: 1.5
+
+  always_send_full_costmap: true
+  transform_tolerance: 0.2
+
+  # changed(ejalaa): need to define the global map size, since we don't use a static_map
+  # width: 10.0
+  # height: 10.0
+  # track_unknown_space: true
+
+  plugins:
+    # changed(ejalaa): comment this out, otherwise, it expects a static map
+    - {name: static_layer,    type: "costmap_2d::StaticLayer"}
+    - {name: obstacles_layer,  type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer,     type: "costmap_2d::InflationLayer"}
+    - {name: 3d_obstacles_layer,  type: "costmap_2d::VoxelLayer"}

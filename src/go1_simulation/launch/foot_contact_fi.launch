@@ -1,0 +1,11 @@
+<launch>
+    <!-- Launch the Foot Contact Fault Injector Node -->
+    <node pkg="go1_simulation" type="foot_contact_fault_injector.py" name="foot_contact_fault_injector"
+          output="screen" args="noise"/>
+
+    <!-- Launch the State Estimator Node -->
+    <node pkg="champ_base" type="state_estimation_node" name="state_estimator"
+          output="screen">
+        <remap from="/foot_contacts" to="/faulty_foot_contacts"/>
+    </node>
+</launch>

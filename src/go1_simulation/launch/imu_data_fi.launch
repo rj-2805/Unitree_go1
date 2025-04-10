@@ -1,0 +1,13 @@
+<launch>
+    <!-- Launch the IMU Fault Injector Node -->
+    <node pkg="go1_simulation" type="imu_fault_injector.py" name="imu_fault_injector"
+          output="screen">
+        <param name="fault_type" value="noise"/>
+    </node>
+
+    <!-- Launch the State Estimator Node -->
+    <node pkg="champ_base" type="state_estimation_node" name="state_estimator"
+          output="screen">
+        <remap from="/imu/data" to="/imu/faulty_data"/>
+    </node>
+</launch>

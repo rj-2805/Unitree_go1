@@ -1,0 +1,19 @@
+<launch>
+    <!-- Launch the Fault Injector Node -->
+    <node pkg="go1_simulation" type="joint_states_fault_injector.py" name="fault_injector"
+          output="screen">
+        <param name="fault_type" value="noise"/>
+    </node>
+
+    <!-- Launch the Robot State Publisher -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+          output="screen">
+        <remap from="/joint_states" to="/faulty_joint_states"/>
+    </node>
+
+    <!-- Launch the State Estimator Node -->
+    <node pkg="champ_base" type="state_estimation_node" name="state_estimator"
+          output="screen">
+        <remap from="/joint_states" to="/faulty_joint_states"/>
+    </node>
+</launch>

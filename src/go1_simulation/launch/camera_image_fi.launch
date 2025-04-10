@@ -1,0 +1,13 @@
+<launch>
+    <!-- Launch the Camera Image Fault Injector -->
+    <node pkg="go1_simulation" type="camera_image_fault_injector.py" name="camera_image_fault_injector"
+          output="screen">
+        <param name="fault_type" value="Image_blur"/>
+    </node>
+
+    <!-- Launch the Aruco Detector with Faulty Camera Image -->
+    <node pkg="go1_simulation" type="aruco_detector.py" name="aruco_pose_transform_node"
+          output="screen">
+        <param name="camera_topic" value="/camera/faulty_image"/>
+    </node>
+</launch>

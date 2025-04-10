@@ -1,0 +1,11 @@
+<launch>
+    <!-- Launch the Joint Controller Fault Injector Node -->
+    <node pkg="go1_simulation" type="joint_controller_fault_injector.py" name="joint_controller_fault_injector"
+          output="screen">
+        <param name="fault_type" value="noise"/>
+    </node>
+
+    <!-- Relay Faulty Command to the Correct Topic -->
+    <node pkg="topic_tools" type="relay" name="joint_command_relay"
+          output="screen" args="/faulty_joint_group_position_controller/command /joint_group_position_controller/command"/>
+</launch>

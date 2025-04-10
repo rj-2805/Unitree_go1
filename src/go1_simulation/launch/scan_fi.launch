@@ -1,0 +1,24 @@
+<launch>
+    <!-- Launch the Scan Fault Injector Node -->
+    <node pkg="go1_simulation" type="scan_fault_injector.py" name="scan_fault_injector"
+          output="screen">
+        <param name="fault_type" value="random_noise"/>
+    </node>
+
+    <!-- Launch AMCL with Faulty Scan Data -->
+    <node pkg="amcl" type="amcl" name="amcl">
+        <remap from="/scan" to="/faulty_scan"/>
+    </node>
+
+    <!-- Launch Laser Scan Matcher with Faulty Scan Data -->
+    <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node">
+        <remap from="/scan" to="/faulty_scan"/>
+    </node>
+
+     <!-- Launch Move Base with Faulty Scan Data -->
+    <node pkg="move_base" type="move_base" name="move_base">
+        <remap from="/scan" to="/faulty_scan"/>
+    </node>
+
+   
+</launch>

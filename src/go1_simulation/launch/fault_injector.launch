@@ -1,0 +1,28 @@
+<launch>
+    <!-- Launch the Joint_state Fault Injector Node -->
+    <node pkg="go1_simulation" type="joint_states_fault_injector.py" name="joint_state_fault_injector"
+          output="screen">
+        <param name="fault_type" value="noise"/>
+    </node>
+
+    <!-- Launch the IMU Fault Injector Node -->
+    <node pkg="go1_simulation" type="imu_fault_injector.py" name="imu_fault_injector"
+          output="screen" args="noise"/>  
+
+   <!-- Launch the Foot Contact Fault Injector Node -->
+    <node pkg="go1_simulation" type="foot_contact_fault_injector.py" name="foot_contact_fault_injector"
+          output="screen" args="failure"/>
+
+   <!-- Launch the Scan Fault Injector Node -->
+    <node pkg="go1_simulation" type="scan_fault_injector.py" name="scan_fault_injector"
+          output="screen">
+        <param name="fault_type" value="random_noise"/>
+    </node>
+
+     <!-- Launch the Joint Controller Fault Injector Node -->
+    <node pkg="go1_simulation" type="joint_controller_fault_injector.py" name="joint_controller_fault_injector"
+          output="screen">
+        <param name="fault_type" value="noise"/>
+    </node>
+
+</launch>

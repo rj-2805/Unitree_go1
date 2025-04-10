@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+    <model name="aruco_582_cube">
+        <static>true</static> <!-- Set to true if the model is static -->
+        <link name="aruco_582_cube_link">
+            <visual name="aruco_582_cube_visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://aruco_582_cube/aruco_582_cube.dae</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+            <collision name="aruco_582_cube_collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://aruco_582_cube/aruco_582_cube.dae</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+        </link>
+    </model>
+</sdf>

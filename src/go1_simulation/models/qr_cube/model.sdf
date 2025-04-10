@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+    <model name="qr_code_1">
+        <static>true</static> <!-- Set to true if the model is static, as for a QR code -->
+        <link name="qr_code_link">
+            <visual name="qr_code_visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://qr_cube/582_aruco.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+            <collision name="qr_code_collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://qr_cube/582_aruco.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+        </link>
+    </model>
+</sdf>
