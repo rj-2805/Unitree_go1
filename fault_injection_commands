@@ -1,0 +1,40 @@
+roslaunch go1_simulation go1_simulation.launch
+roslaunch go1_simulation navigate.launch rviz:=true
+rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_id: map}, pose:{position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {z: 0.0, w: 1.0}}}'
+
+joint_states:
+rosrun go1_simulation joint_states_fault_injector.py  _fault_type:="noise"
+rosrun robot_state_publisher robot_state_publisher /joint_states:=/faulty_joint_states
+rosrun champ_base state_estimation_node __name:=state_estimator /joint_states:=/faulty_joint_states
+
+imu data:
+rosrun go1_simulation imu_fault_injector.py noise
+rosrun champ_base state_estimation_node __name:=state_estimator /imu/data:=/imu/faulty_data
+
+
+foot_contacts:
+rosrun go1_simulation foot_contact_fault_injector.py noise
+rosrun champ_base state_estimation_node __name:=state_estimator /foot_contacts:=/faulty_foot_contacts
+
+joint_group_position_controller command:
+rosrun go1_simulation joint_controller_fault_injector.py  _fault_type:="noise"
+rosrun topic_tools relay /faulty_joint_group_position_controller/command /joint_group_position_controller/command
+
+camera(nav): [change the topic in move_base.launch]
+rosrun go1_simulation camera_pointcloud_fault_injector.py noise
+rosrun move_base move_base /camera/depth/color/points:=/camera/depth/color/faulty_points
+
+scan(nav): [change the topic in move_base.launch]
+rosrun go1_simulation scan_fault_injector.py _fault_type:=random_noise
+rosrun amcl amcl /scan:=/faulty_scan
+rosrun laser_scan_matcher laser_scan_matcher_node __name:=laser_scan_matcher_node /scan:=/faulty_scan
+rosrun move_base move_base /scan:=/faulty_scan
+
+camera image(detection):
+rosrun go1_simulation camera_image_fault_injector.py Image_blur
+
+
+
+
+
+

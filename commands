@@ -1,0 +1,25 @@
+champ repo:
+  teleop control:
+roslaunch champ_config bringup.launch rviz:=true
+roslaunch champ_teleop teleop.launch
+
+  SLAM:
+roslaunch champ_config gazebo.launch 
+roslaunch champ_config slam.launch rviz:=true
+roscd champ_config/maps
+rosrun map_server map_saver
+
+  Autonomous Navigation:
+roslaunch champ_config gazebo.launch 
+roslaunch champ_config navigate.launch rviz:=true
+
+
+Unitree repo:
+roslaunch unitree_gazebo normal.launch rname:=go1 wname:=stairs
+roslaunch go1_description go1_rviz.launch
+
+  
+go1 repo:
+roslaunch go1_description go1_navigation.launch
+
+
